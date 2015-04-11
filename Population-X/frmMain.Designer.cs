@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.rtbConOut = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblMode = new System.Windows.Forms.Label();
             this.lblMousePosition = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblApplicationVersion = new System.Windows.Forms.Label();
             this.lblDateTimeNow = new System.Windows.Forms.Label();
-            this.rtbConOut = new System.Windows.Forms.RichTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.rtbConOut);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.lblMode);
@@ -75,6 +77,22 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(797, 537);
             this.toolStripContainer1.TabIndex = 12;
             this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // rtbConOut
+            // 
+            this.rtbConOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbConOut.BackColor = System.Drawing.Color.Black;
+            this.rtbConOut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbConOut.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.rtbConOut.Location = new System.Drawing.Point(344, 108);
+            this.rtbConOut.Name = "rtbConOut";
+            this.rtbConOut.ReadOnly = true;
+            this.rtbConOut.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.rtbConOut.ShowSelectionMargin = true;
+            this.rtbConOut.Size = new System.Drawing.Size(441, 388);
+            this.rtbConOut.TabIndex = 21;
+            this.rtbConOut.TabStop = false;
+            this.rtbConOut.Text = "";
             // 
             // label3
             // 
@@ -160,27 +178,21 @@
             // 
             this.lblDateTimeNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDateTimeNow.AutoSize = true;
-            this.lblDateTimeNow.Location = new System.Drawing.Point(33, 461);
+            this.lblDateTimeNow.Location = new System.Drawing.Point(121, 461);
             this.lblDateTimeNow.Name = "lblDateTimeNow";
             this.lblDateTimeNow.Size = new System.Drawing.Size(35, 13);
             this.lblDateTimeNow.TabIndex = 12;
             this.lblDateTimeNow.Text = "label1";
             // 
-            // rtbConOut
+            // label5
             // 
-            this.rtbConOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbConOut.BackColor = System.Drawing.Color.Black;
-            this.rtbConOut.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbConOut.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.rtbConOut.Location = new System.Drawing.Point(344, 339);
-            this.rtbConOut.Name = "rtbConOut";
-            this.rtbConOut.ReadOnly = true;
-            this.rtbConOut.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.rtbConOut.ShowSelectionMargin = true;
-            this.rtbConOut.Size = new System.Drawing.Size(441, 157);
-            this.rtbConOut.TabIndex = 21;
-            this.rtbConOut.TabStop = false;
-            this.rtbConOut.Text = "";
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 461);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Date And Time";
             // 
             // frmMain
             // 
@@ -217,6 +229,7 @@
         private System.Windows.Forms.Label lblApplicationVersion;
         private System.Windows.Forms.Label lblDateTimeNow;
         private System.Windows.Forms.RichTextBox rtbConOut;
+        private System.Windows.Forms.Label label5;
     }
 }
 
