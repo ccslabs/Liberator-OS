@@ -50,5 +50,8 @@
     <Setting Name="CurrentFakeLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">...</Value>
     </Setting>
+    <Setting Name="PasswordOne" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

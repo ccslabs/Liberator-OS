@@ -199,5 +199,17 @@ namespace Population_X.Properties {
                 this["CurrentFakeLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PasswordOne {
+            get {
+                return ((string)(this["PasswordOne"]));
+            }
+            set {
+                this["PasswordOne"] = value;
+            }
+        }
     }
 }

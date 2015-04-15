@@ -31,11 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblFakeLocation = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEnterPassword = new System.Windows.Forms.Button();
             this.btnCheckUpdate = new System.Windows.Forms.Button();
             this.btnExitApplication = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.lblFakeLocation = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.cbAnonymity = new Population_X.xControls.XCheckBox();
             this.cbFileSystemEncryption = new Population_X.xControls.XCheckBox();
             this.cbNetworkIntrusion = new Population_X.xControls.XCheckBox();
@@ -93,6 +94,39 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Your Fake Location";
             // 
+            // lblFakeLocation
+            // 
+            this.lblFakeLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblFakeLocation.AutoSize = true;
+            this.lblFakeLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Population_X.Properties.Settings.Default, "CurrentFakeLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.lblFakeLocation.Location = new System.Drawing.Point(122, 168);
+            this.lblFakeLocation.Name = "lblFakeLocation";
+            this.lblFakeLocation.Size = new System.Drawing.Size(16, 13);
+            this.lblFakeLocation.TabIndex = 4;
+            this.lblFakeLocation.Text = global::Population_X.Properties.Settings.Default.CurrentFakeLocation;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 197);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(753, 10);
+            this.panel1.TabIndex = 7;
+            // 
+            // btnEnterPassword
+            // 
+            this.btnEnterPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnterPassword.BackgroundImage = global::Population_X.Properties.Resources.httpzcoolcomcnpicpngnew_png_113VistaICO_Aero_Pack2_025png;
+            this.btnEnterPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEnterPassword.Location = new System.Drawing.Point(711, 108);
+            this.btnEnterPassword.Name = "btnEnterPassword";
+            this.btnEnterPassword.Size = new System.Drawing.Size(30, 30);
+            this.btnEnterPassword.TabIndex = 8;
+            this.btnEnterPassword.Text = "button2";
+            this.btnEnterPassword.UseVisualStyleBackColor = true;
+            this.btnEnterPassword.Click += new System.EventHandler(this.btnEnterPassword_Click);
+            // 
             // btnCheckUpdate
             // 
             this.btnCheckUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -100,7 +134,7 @@
             this.btnCheckUpdate.BackgroundImage = global::Population_X.Properties.Resources.update;
             this.btnCheckUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCheckUpdate.ForeColor = System.Drawing.Color.Transparent;
-            this.btnCheckUpdate.Location = new System.Drawing.Point(711, 77);
+            this.btnCheckUpdate.Location = new System.Drawing.Point(711, 72);
             this.btnCheckUpdate.Name = "btnCheckUpdate";
             this.btnCheckUpdate.Size = new System.Drawing.Size(30, 30);
             this.btnCheckUpdate.TabIndex = 6;
@@ -135,26 +169,6 @@
             this.button1.TabIndex = 1;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnCloseWindow_Click);
-            // 
-            // lblFakeLocation
-            // 
-            this.lblFakeLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblFakeLocation.AutoSize = true;
-            this.lblFakeLocation.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Population_X.Properties.Settings.Default, "CurrentFakeLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.lblFakeLocation.Location = new System.Drawing.Point(122, 168);
-            this.lblFakeLocation.Name = "lblFakeLocation";
-            this.lblFakeLocation.Size = new System.Drawing.Size(16, 13);
-            this.lblFakeLocation.TabIndex = 4;
-            this.lblFakeLocation.Text = global::Population_X.Properties.Settings.Default.CurrentFakeLocation;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Red;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 197);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(753, 10);
-            this.panel1.TabIndex = 7;
             // 
             // cbAnonymity
             // 
@@ -286,6 +300,8 @@
             // 
             this.cbAntiVirusRunning.AlwaysShowCheck = true;
             this.cbAntiVirusRunning.AutoSize = true;
+            this.cbAntiVirusRunning.Checked = global::Population_X.Properties.Settings.Default.AntiVirusEnabled;
+            this.cbAntiVirusRunning.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Population_X.Properties.Settings.Default, "AntiVirusEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbAntiVirusRunning.Location = new System.Drawing.Point(167, 72);
             this.cbAntiVirusRunning.Name = "cbAntiVirusRunning";
             this.cbAntiVirusRunning.ReadOnly = true;
@@ -318,6 +334,7 @@
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(753, 207);
             this.ControlBox = false;
+            this.Controls.Add(this.btnEnterPassword);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCheckUpdate);
             this.Controls.Add(this.btnExitApplication);
@@ -361,5 +378,6 @@
         private System.Windows.Forms.Button btnExitApplication;
         private System.Windows.Forms.Button btnCheckUpdate;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnEnterPassword;
     }
 }

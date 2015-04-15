@@ -63,9 +63,39 @@ namespace Population_X.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap accept {
+            get {
+                object obj = ResourceManager.GetObject("accept", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bullet_arrow_up {
             get {
                 object obj = ResourceManager.GetObject("bullet_arrow_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cross {
+            get {
+                object obj = ResourceManager.GetObject("cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap httpzcoolcomcnpicpngnew_png_113VistaICO_Aero_Pack2_025png {
+            get {
+                object obj = ResourceManager.GetObject("httpzcoolcomcnpicpngnew_png_113VistaICO_Aero_Pack2_025png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

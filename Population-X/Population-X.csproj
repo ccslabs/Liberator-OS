@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <PublishUrl>\\WEBSERVER9\Users\Dave\Documents\CCSLABS2\Software\PopXOS\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -27,8 +29,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>78</ApplicationRevision>
+    <ApplicationVersion>1.0.7.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -77,16 +79,36 @@
     <ManifestKeyFile>Population-X_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Population-X_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedOpenSsl, Version=0.6.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Binn\3PInstallers\OpenSSL\ManagedOpenSsl.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Base">
+      <HintPath>..\packages\Pcap.Net.x64.1.0.3\lib\net40\PcapDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core">
+      <HintPath>..\packages\Pcap.Net.x64.1.0.3\lib\net40\PcapDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core.Extensions">
+      <HintPath>..\packages\Pcap.Net.x64.1.0.3\lib\net40\PcapDotNet.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Packets">
+      <HintPath>..\packages\Pcap.Net.x64.1.0.3\lib\net40\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
     </Reference>
     <Reference Include="System.Management.Instrumentation">
       <Private>True</Private>
@@ -104,12 +126,34 @@
   <ItemGroup>
     <Compile Include="Classes\AV\AntiVirus.cs" />
     <Compile Include="Classes\AV\Enumerations.cs" />
+    <Compile Include="Classes\DEFS\DEFT.cs" />
+    <Compile Include="Classes\DEFS\Drives.cs" />
+    <Compile Include="Classes\DEFS\FileSystemEncryption.cs" />
     <Compile Include="Classes\Firewalls\Firewall.cs" />
+    <Compile Include="Classes\IDS\IDS.cs" />
+    <Compile Include="Classes\NetworkEncryption\Status.cs" />
+    <Compile Include="Classes\NetworkHopping\Manager.cs" />
+    <Compile Include="Classes\NetworkHopping\Status.cs" />
+    <Compile Include="Classes\Powershell\ScriptRunner.cs" />
     <Compile Include="Classes\Processes\Enumerations.cs" />
     <Compile Include="Classes\Processes\Processes.cs" />
+    <Compile Include="Classes\Registry\Reader.cs" />
     <Compile Include="Classes\Services\Services.cs" />
+    <Compile Include="Classes\Spoofing\MacSpoofing.cs" />
     <Compile Include="Classes\Updater\Updater.cs" />
     <Compile Include="Classes\VPN\VPNs.cs" />
+    <Compile Include="Forms\Passwords\frmGetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Passwords\frmGetPassword.Designer.cs">
+      <DependentUpon>frmGetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Passwords\VerifyPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Passwords\VerifyPassword.Designer.cs">
+      <DependentUpon>VerifyPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +171,18 @@
     <Compile Include="xControls\xCheck.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="xControls\xCheckCrossBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="xControls\xCheckCrossBox.Designer.cs">
+      <DependentUpon>xCheckCrossBox.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Passwords\frmGetPassword.resx">
+      <DependentUpon>frmGetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Passwords\VerifyPassword.resx">
+      <DependentUpon>VerifyPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +199,103 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="xControls\xCheckCrossBox.resx">
+      <DependentUpon>xCheckCrossBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Binn\3PInstallers\OpenSSL\libeay32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Binn\3PInstallers\OpenSSL\ManagedOpenSsl.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Binn\3PInstallers\OpenSSL\ssleay32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\TorData\geoip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\TorData\geoip6">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\TorData\torrc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\TorData\torrc-defaults">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Binn\3PInstallers\MACMakeup\mcmkup-recycle.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\MACMakeup\mcmkup.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\bz2.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\Crypto.Cipher._AES.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\Crypto.Hash._SHA256.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\Crypto.Hash._SHA512.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\Crypto.Random.OSRNG.winrandom.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\Crypto.Util.strxor.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\Crypto.Util._counter.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\fte.cDFA.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\fteproxy.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\fteproxy\defs\20131224.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\fteproxy\VERSION">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\M2Crypto.__m2crypto.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\obfsproxy.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\py2exe-flashproxy.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\pyexpat.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\select.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\unicodedata.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\zope.interface._zope_interface_coptimizations.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\_ctypes.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\_hashlib.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\_socket.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Binn\3PInstallers\Tor\PluggableTransports\_ssl.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
     <None Include="Population-X_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -166,6 +319,81 @@
     <Content Include="Binn\3PInstallers\openvpn-install-2.3.6-I003-x86_64.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\cross.png" />
+    <Content Include="Binn\3PInstallers\Tor\libeay32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libevent-2-0-5.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libevent_core-2-0-5.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libevent_extra-2-0-5.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libgcc_s_sjlj-1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libgmp-10.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libgmpxx-4.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\libssp-0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\flashproxy-client.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\flashproxy-reg-appspot.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\flashproxy-reg-email.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\flashproxy-reg-http.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\flashproxy-reg-url.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\fteproxy.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\meek-client-torbrowser.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\meek-client.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\obfsproxy.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\python27.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\terminateprocess-buffer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\PluggableTransports\w9xpopen.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\ssleay32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\tor.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\Tor\zlib1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binn\3PInstallers\WinPCap\WinPcap_4_1_3.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\httpzcoolcomcnpicpngnew_png_113VistaICO_Aero_Pack2_025png.png" />
     <Content Include="silhouette-of-a-man-36181_640.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +425,43 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="NATUPNPLib">
+      <Guid>{1C565858-F302-471E-B409-F180AA4ABEC6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="NETCONLib">
+      <Guid>{43E734CA-043D-4A70-9A2C-A8F254063D91}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="NetFwTypeLib">
+      <Guid>{58FBCF7C-E7A9-467C-80B3-FC65E8FCCA08}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

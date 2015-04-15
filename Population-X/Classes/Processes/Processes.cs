@@ -33,30 +33,42 @@ namespace Population_X.Classes.Processes
             return false;
         }
 
-        internal void RunProcess(string pathToExecutable)
+        internal void RunProcess(string pathToExecutable, bool WaitForExit)
         {
             if (RunProcessLog != null) RunProcessLog("Running Process " + pathToExecutable);
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = pathToExecutable;
-            startInfo.CreateNoWindow = true;
+            startInfo.FileName = "\"" + pathToExecutable + "\"";
             startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardError = true;
+            startInfo.RedirectStandardOutput = true;
+            
             Process proc = new Process();
-            proc.WaitForExit();
+            
             proc.StartInfo = startInfo;
+            proc.Exited += proc_Exited;
+            proc.ErrorDataReceived += proc_ErrorDataReceived;
             proc.Start();
-            int eCode = proc.ExitCode;
+            
+            if (WaitForExit)
+            {
+                proc.WaitForExit();
+                int eCode = proc.ExitCode;
+            }
 
-            if (RunProcessCompleted != null)
-            {
-                RunProcessCompleted(true);
-            }
-            else
-            {
-                RunProcessCompleted(false);
-            }
+            
         }
 
-        internal void RunProcess(string pathToExecutable, string Options)
+        void proc_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void proc_Exited(object sender, EventArgs e)
+        {
+           if(RunProcessCompleted != null)  RunProcessCompleted(true);
+        }
+
+        internal void RunProcess(string pathToExecutable, string Options, bool WaitForExit)
         {
             if (RunProcessLog != null) RunProcessLog("Running Process " + pathToExecutable);
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -87,6 +99,27 @@ namespace Population_X.Classes.Processes
             {
                 RunProcessCompleted(false);
             }
+        }
+
+
+        internal bool KillProcess(string processName)
+        {
+            if (RunProcessLog != null) RunProcessLog("Killing Process " + processName);
+            Process[] processlist = Process.GetProcesses();
+
+            int idx = 0;
+            foreach (Process theprocess in processlist)
+            {
+                if (theprocess.ProcessName.ToLowerInvariant().Contains(processName))
+                {
+                    
+                    processlist[idx].Kill();
+                    return true;
+                }
+                idx++;
+            }
+
+            return false;
         }
     }
 }
