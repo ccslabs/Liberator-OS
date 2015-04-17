@@ -29,7 +29,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>78</ApplicationRevision>
+    <ApplicationRevision>97</ApplicationRevision>
     <ApplicationVersion>1.0.7.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -142,6 +142,12 @@
     <Compile Include="Classes\Spoofing\MacSpoofing.cs" />
     <Compile Include="Classes\Updater\Updater.cs" />
     <Compile Include="Classes\VPN\VPNs.cs" />
+    <Compile Include="Forms\EncryptionTest\frmEncryptionDecryptionTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EncryptionTest\frmEncryptionDecryptionTest.Designer.cs">
+      <DependentUpon>frmEncryptionDecryptionTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Passwords\frmGetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     <Compile Include="xControls\xCheckCrossBox.Designer.cs">
       <DependentUpon>xCheckCrossBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\EncryptionTest\frmEncryptionDecryptionTest.resx">
+      <DependentUpon>frmEncryptionDecryptionTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Passwords\frmGetPassword.resx">
       <DependentUpon>frmGetPassword.cs</DependentUpon>
     </EmbeddedResource>

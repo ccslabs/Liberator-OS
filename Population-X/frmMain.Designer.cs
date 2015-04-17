@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.label5 = new System.Windows.Forms.Label();
             this.rtbConOut = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblMode = new System.Windows.Forms.Label();
@@ -41,9 +42,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblApplicationVersion = new System.Windows.Forms.Label();
             this.lblDateTimeNow = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.testsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelHover = new System.Windows.Forms.Panel();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            this.cmsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer
@@ -57,6 +62,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.panelHover);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.rtbConOut);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
@@ -77,6 +83,16 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(797, 537);
             this.toolStripContainer1.TabIndex = 12;
             this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 461);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Date And Time";
             // 
             // rtbConOut
             // 
@@ -184,15 +200,36 @@
             this.lblDateTimeNow.TabIndex = 12;
             this.lblDateTimeNow.Text = "label1";
             // 
-            // label5
+            // cmsMain
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 461);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Date And Time";
+            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testsToolStripMenuItem});
+            this.cmsMain.Name = "cmsMain";
+            this.cmsMain.Size = new System.Drawing.Size(102, 26);
+            // 
+            // testsToolStripMenuItem
+            // 
+            this.testsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.encryptionToolStripMenuItem});
+            this.testsToolStripMenuItem.Name = "testsToolStripMenuItem";
+            this.testsToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.testsToolStripMenuItem.Text = "Tests";
+            // 
+            // encryptionToolStripMenuItem
+            // 
+            this.encryptionToolStripMenuItem.Name = "encryptionToolStripMenuItem";
+            this.encryptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.encryptionToolStripMenuItem.Text = "Encryption ";
+            this.encryptionToolStripMenuItem.Click += new System.EventHandler(this.encryptionToolStripMenuItem_Click);
+            // 
+            // panelHover
+            // 
+            this.panelHover.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHover.Location = new System.Drawing.Point(0, 0);
+            this.panelHover.Name = "panelHover";
+            this.panelHover.Size = new System.Drawing.Size(797, 10);
+            this.panelHover.TabIndex = 23;
+            this.panelHover.MouseHover += new System.EventHandler(this.panelHover_MouseHover);
             // 
             // frmMain
             // 
@@ -200,6 +237,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(797, 537);
+            this.ContextMenuStrip = this.cmsMain;
             this.Controls.Add(this.toolStripContainer1);
             this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -211,6 +249,7 @@
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            this.cmsMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -230,6 +269,10 @@
         private System.Windows.Forms.Label lblDateTimeNow;
         private System.Windows.Forms.RichTextBox rtbConOut;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ContextMenuStrip cmsMain;
+        private System.Windows.Forms.ToolStripMenuItem testsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem encryptionToolStripMenuItem;
+        private System.Windows.Forms.Panel panelHover;
     }
 }
 
